@@ -31,4 +31,4 @@ NR > 1 {
   }
   print row;
 }
-' temp7.csv > one_hot_country.csv
+' ./data/temp7.csv > ./data/one_hot_country.csv

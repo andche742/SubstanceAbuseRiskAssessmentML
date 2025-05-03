@@ -1,9 +1,9 @@
 #!/bin/bash
 
-input_file="./data/normalized.csv"
-output_file="./data/temp1.csv"
+input_file="./data/temp10.csv"
+output_file="./data/processed.csv"
 nscore=3
-ss=10
+ss=9
 
 awk -F"," -v first_c="$nscore" -v last_c="$ss" 'BEGIN {OFS = ","}
   NR == 1 {

@@ -31,4 +31,4 @@ NR > 1 {
   }
   print row;
 }
-' one_hot_gender.csv > one_hot_eth.csv
+' ./data/one_hot_gender.csv > ./data/one_hot_eth.csv
