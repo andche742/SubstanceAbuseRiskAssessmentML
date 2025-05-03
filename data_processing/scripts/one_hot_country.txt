@@ -1,0 +1,34 @@
+awk -F',' '
+BEGIN {
+  OFS = ",";
+  split("Australia,Canada,New_Zealand,Other,Republic_of_Ireland,UK,USA", countries, ",");
+}
+NR == 1 {
+  for (i = 1; i <= NF; i++) {
+    gsub(/\r/, "", $i);
+    if ($i == "Country") {
+      country_col = i;
+    } else {
+      header = (header ? header OFS : "") $i;
+    }
+  }
+  for (j in countries) {
+    header = header OFS "country_" countries[j];
+  }
+  print header;
+}
+NR > 1 {
+  gsub(/\r/, "", $0);
+  original_country = $country_col;
+  row = "";
+  for (i = 1; i <= NF; i++) {
+    if (i != country_col) {
+      row = (row ? row OFS : "") $i;
+    }
+  }
+  for (j in countries) {
+    row = row OFS ((countries[j] == original_country) ? 1 : 0);
+  }
+  print row;
+}
+' temp7.csv > one_hot_country.csv

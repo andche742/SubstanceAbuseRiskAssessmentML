@@ -39,6 +39,7 @@ chmod +x one_hot_country.txt
 (paste -d ',' <(head -n1 one_hot_country.csv) <(echo "gender_F,gender_M") && tail -n +2 one_hot_country.csv| awk -F',' '{if ($3 == "F") print $0 ",1,0"; if ($3 == "M") print $0 ",0,1"}' OFS=",") > temp8.csv
 paste -d',' <(cut -d',' -f1-2 temp8.csv) <(cut -d',' -f4-39 temp8.csv) > one_hot_gender.csv
   # One-hot encoding for gender
+  
 chmod +x one_hot_eth.txt
 	# Allow execution of one-hot script for ethnicities
 ./one_hot_eth.txt

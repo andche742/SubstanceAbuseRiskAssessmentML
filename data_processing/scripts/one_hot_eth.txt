@@ -1,0 +1,34 @@
+awk -F',' '
+BEGIN {
+  OFS = ",";
+  split("Asian,Black,Mixed-Black/Asian,Mixed-White/Asian,Mixed-White/Black,Other,White", eths, ",");
+}
+NR == 1 {
+  for (i = 1; i <= NF; i++) {
+    gsub(/\r/, "", $i);
+    if ($i == "Ethnicity") {
+      eth_col = i;
+    } else {
+      header = (header ? header OFS : "") $i;
+    }
+  }
+  for (j in eths) {
+    header = header OFS "eth_" eths[j];
+  }
+  print header;
+}
+NR > 1 {
+  gsub(/\r/, "", $0);
+  original_eth = $eth_col;
+  row = "";
+  for (i = 1; i <= NF; i++) {
+    if (i != eth_col) {
+      row = (row ? row OFS : "") $i;
+    }
+  }
+  for (j in eths) {
+    row = row OFS ((eths[j] == original_eth) ? 1 : 0);
+  }
+  print row;
+}
+' one_hot_gender.csv > one_hot_eth.csv
