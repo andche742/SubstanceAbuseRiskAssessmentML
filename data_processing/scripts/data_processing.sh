@@ -47,7 +47,7 @@ chmod +x ./scripts/one_hot_eth.txt
 ./scripts/one_hot_eth.txt
 
 
-sed -e 's/CL0/0/g' -e 's/CL1/0/g' -e 's/CL2/1/g' -e 's/CL3/1/g' -e 's/CL4/2/g' -e 's/CL5/2/g' -e 's/CL6/2/g' ./data/one_hot_eth.csv > ./data/temp8.csv
+sed -e 's/CL0/0/g' -e 's/CL1/0/g' -e 's/CL2/0/g' -e 's/CL3/1/g' -e 's/CL4/1/g' -e 's/CL5/1/g' -e 's/CL6/1/g' ./data/one_hot_eth.csv > ./data/temp8.csv
 	# Changing CL0-6 ranking to 1-3 (not at risk, potentially at risk, at risk)
 
 cut -d',' -f2-44 ./data/temp8.csv > ./data/temp9.csv
